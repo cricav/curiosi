@@ -1098,93 +1098,82 @@ function toggleDomanda(id, si, di) {
 // Fallback automatico alla Web Speech API se i file non sono presenti
 
 let audioCorrente = null;
-let usaMP3 = true; // imposta false per usare solo Web Speech
 
 function leggiDomanda(si, di) {
-  // Alla apertura della domanda parte subito l'MP3 completo
-  fermaVoce();
   const id = 'dom-' + si + '-' + di;
-  leggiRisposta(id, si, di);
+  _riproduciMP3(id, si, di);
 }
 
 function leggiRisposta(id, si, di) {
-  fermaVoce();
-  const nomeFile = 'dom_' + si + '_' + di + '.mp3';
-  audioCorrente = new Audio(nomeFile);
-  audioCorrente.volume = 1.0;
-
-  const btnVoce = document.querySelector('#risp-' + id + ' .btn-voce');
-  const testoOriginale = btnVoce ? btnVoce.innerHTML : '';
-
-  if (btnVoce) btnVoce.innerHTML = '⏳ Caricamento...';
-
-  audioCorrente.addEventListener('canplaythrough', () => {
-    if (btnVoce) btnVoce.innerHTML = '▶️ In riproduzione...';
-  }, { once: true });
-
-  audioCorrente.addEventListener('ended', () => {
-    if (btnVoce) btnVoce.innerHTML = testoOriginale;
-    audioCorrente = null;
-  }, { once: true });
-
-  audioCorrente.addEventListener('error', () => {
-    if (btnVoce) btnVoce.innerHTML = testoOriginale;
-    audioCorrente = null;
-    leggiRispostaFallback(id, si, di);
-  }, { once: true });
-
-  audioCorrente.play().catch(() => {
-    if (btnVoce) btnVoce.innerHTML = testoOriginale;
-    audioCorrente = null;
-    leggiRispostaFallback(id, si, di);
-  });
+  _riproduciMP3(id, si, di);
 }
 
-function leggiRispostaFallback(id, si, di) {
-  // Web Speech come riserva
-  if (!window.speechSynthesis) return;
-  const d = DATI[si][di];
-  const testo = d.r + ' ... ' + d.b.replace(/^[^:]+: «/, '').replace(/»$/, '');
-  const utt = new SpeechSynthesisUtterance(testo);
-  utt.lang = 'it-IT';
-  utt.rate = 0.88;
-  utt.pitch = 1.0;
-  utt.volume = 1;
-  impostaVoce(utt);
-  window.speechSynthesis.speak(utt);
+function _riproduciMP3(id, si, di) {
+  // Ferma qualsiasi audio in corso senza toccare quello che stiamo per creare
+  if (audioCorrente) {
+    audioCorrente.pause();
+    audioCorrente = null;
+  }
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+
+  const nomeFile = 'dom_' + si + '_' + di + '.mp3';
+  const audio = new Audio(nomeFile);
+  audioCorrente = audio;
+
+  const btn = document.querySelector('#risp-' + id + ' .btn-voce');
+  if (btn) btn.innerHTML = '▶️ In riproduzione...';
+
+  audio.addEventListener('ended', () => {
+    if (audioCorrente === audio) audioCorrente = null;
+    if (btn) btn.innerHTML = '🔁 Riascolta';
+  }, { once: true });
+
+  audio.addEventListener('error', () => {
+    if (audioCorrente === audio) audioCorrente = null;
+    if (btn) btn.innerHTML = '🔁 Riascolta';
+    // Fallback Web Speech
+    if (!window.speechSynthesis) return;
+    const d = DATI[si][di];
+    const testo = d.r + ' ... ' + d.b.replace(/^[^:]+: «/, '').replace(/»$/, '');
+    const utt = new SpeechSynthesisUtterance(testo);
+    utt.lang = 'it-IT';
+    utt.rate = 0.88;
+    utt.pitch = 1.0;
+    impostaVoce(utt);
+    window.speechSynthesis.speak(utt);
+  }, { once: true });
+
+  audio.play().catch(() => {
+    // play() respinto (es. autoplay policy) — non fare nulla, l'utente riclicca
+    if (audioCorrente === audio) audioCorrente = null;
+    if (btn) btn.innerHTML = '🔁 Riascolta';
+  });
 }
 
 function fermaVoce() {
   if (audioCorrente) {
     audioCorrente.pause();
-    audioCorrente.currentTime = 0;
     audioCorrente = null;
   }
   if (window.speechSynthesis) window.speechSynthesis.cancel();
   document.querySelectorAll('.btn-voce:not(.btn-stop)').forEach(btn => {
-    const t = btn.innerHTML;
-    if (t.includes('riproduzione') || t.includes('Caricamento') || t.includes('⏳') || t.includes('▶️')) {
-      btn.innerHTML = '🔊 Ascolta la risposta';
+    if (!btn.innerHTML.includes('Riascolta')) {
+      btn.innerHTML = '🔁 Riascolta';
     }
   });
 }
 
 function impostaVoce(utt) {
   const voci = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
-  const preferitiIT = voci.filter(v =>
-    v.lang.startsWith('it') &&
-    (v.name.toLowerCase().includes('alice') ||
-     v.name.toLowerCase().includes('federica') ||
-     v.name.toLowerCase().includes('luca') ||
-     v.name.toLowerCase().includes('google') ||
-     v.name.toLowerCase().includes('italian'))
+  const it = voci.filter(v => v.lang.startsWith('it'));
+  const preferita = it.find(v =>
+    v.name.toLowerCase().includes('alice') ||
+    v.name.toLowerCase().includes('federica') ||
+    v.name.toLowerCase().includes('luca') ||
+    v.name.toLowerCase().includes('google')
   );
-  if (preferitiIT.length > 0) {
-    utt.voice = preferitiIT[0];
-  } else {
-    const qualsiasi = voci.find(v => v.lang.startsWith('it'));
-    if (qualsiasi) utt.voice = qualsiasi;
-  }
+  if (preferita) utt.voice = preferita;
+  else if (it.length) utt.voice = it[0];
 }
 
 if (window.speechSynthesis) {
