@@ -1038,7 +1038,7 @@ function renderDomande() {
         <div class="risposta-testo">${d.r}</div>
         <div class="risposta-controls">
           <button class="btn-voce" style="background:${col}" onclick="leggiRisposta('${id}', ${si}, ${di})">
-            🔊 Ascolta la risposta
+            🔁 Riascolta
           </button>
           <button class="btn-voce btn-stop" onclick="fermaVoce()">
             ⏹ Stop
@@ -1101,56 +1101,43 @@ let audioCorrente = null;
 let usaMP3 = true; // imposta false per usare solo Web Speech
 
 function leggiDomanda(si, di) {
-  // Alla apertura della domanda legge solo la domanda (breve, con Web Speech)
-  // per non sovraccaricare — l'MP3 completo è nel pulsante "Ascolta la risposta"
+  // Alla apertura della domanda parte subito l'MP3 completo
   fermaVoce();
-  if (window.speechSynthesis) {
-    const d = DATI[si][di];
-    const utt = new SpeechSynthesisUtterance(d.q);
-    utt.lang = 'it-IT';
-    utt.rate = 0.90;
-    utt.pitch = 1.05;
-    utt.volume = 1;
-    impostaVoce(utt);
-    window.speechSynthesis.speak(utt);
-  }
+  const id = 'dom-' + si + '-' + di;
+  leggiRisposta(id, si, di);
 }
 
 function leggiRisposta(id, si, di) {
   fermaVoce();
   const nomeFile = 'dom_' + si + '_' + di + '.mp3';
-  
-  if (usaMP3) {
-    audioCorrente = new Audio(nomeFile);
-    audioCorrente.volume = 1.0;
-    
-    // Mostra stato caricamento
-    const btnVoce = document.querySelector('#risp-' + id + ' .btn-voce');
-    if (btnVoce) {
-      const testoOriginale = btnVoce.innerHTML;
-      btnVoce.innerHTML = '⏳ Caricamento...';
-      audioCorrente.oncanplaythrough = () => {
-        btnVoce.innerHTML = '🔊 In riproduzione...';
-      };
-      audioCorrente.onended = () => {
-        btnVoce.innerHTML = testoOriginale;
-        audioCorrente = null;
-      };
-      audioCorrente.onerror = () => {
-        // Fallback a Web Speech se il file MP3 non esiste
-        btnVoce.innerHTML = testoOriginale;
-        audioCorrente = null;
-        leggiRispostaFallback(id, si, di);
-      };
-    }
-    
-    audioCorrente.play().catch(() => {
-      audioCorrente = null;
-      leggiRispostaFallback(id, si, di);
-    });
-  } else {
+  audioCorrente = new Audio(nomeFile);
+  audioCorrente.volume = 1.0;
+
+  const btnVoce = document.querySelector('#risp-' + id + ' .btn-voce');
+  const testoOriginale = btnVoce ? btnVoce.innerHTML : '';
+
+  if (btnVoce) btnVoce.innerHTML = '⏳ Caricamento...';
+
+  audioCorrente.addEventListener('canplaythrough', () => {
+    if (btnVoce) btnVoce.innerHTML = '▶️ In riproduzione...';
+  }, { once: true });
+
+  audioCorrente.addEventListener('ended', () => {
+    if (btnVoce) btnVoce.innerHTML = testoOriginale;
+    audioCorrente = null;
+  }, { once: true });
+
+  audioCorrente.addEventListener('error', () => {
+    if (btnVoce) btnVoce.innerHTML = testoOriginale;
+    audioCorrente = null;
     leggiRispostaFallback(id, si, di);
-  }
+  }, { once: true });
+
+  audioCorrente.play().catch(() => {
+    if (btnVoce) btnVoce.innerHTML = testoOriginale;
+    audioCorrente = null;
+    leggiRispostaFallback(id, si, di);
+  });
 }
 
 function leggiRispostaFallback(id, si, di) {
@@ -1174,9 +1161,9 @@ function fermaVoce() {
     audioCorrente = null;
   }
   if (window.speechSynthesis) window.speechSynthesis.cancel();
-  // Reset tutti i pulsanti
   document.querySelectorAll('.btn-voce:not(.btn-stop)').forEach(btn => {
-    if (btn.innerHTML.includes('riproduzione') || btn.innerHTML.includes('Caricamento')) {
+    const t = btn.innerHTML;
+    if (t.includes('riproduzione') || t.includes('Caricamento') || t.includes('⏳') || t.includes('▶️')) {
       btn.innerHTML = '🔊 Ascolta la risposta';
     }
   });
@@ -1237,10 +1224,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.speechSynthesis) {
     window.speechSynthesis.getVoices();
   }
-  // Test presenza MP3: se il primo file non esiste, usa Web Speech
-  const testAudio = new Audio('dom_0_0.mp3');
-  testAudio.onerror = () => { usaMP3 = false; };
-  testAudio.oncanplaythrough = () => { usaMP3 = true; testAudio.src = ''; };
+  // Sistema MP3 attivo — fallback automatico a Web Speech se file mancante
 });
 </script>
 </body>
