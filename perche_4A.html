@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Perché della 4ª A — Risposte degli Esperti</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
+
+  :root {
+    --viola: #7C3AED;
+    --viola-light: #EDE9FE;
+    --arancio: #F97316;
+    --arancio-light: #FFF7ED;
+    --verde: #16A34A;
+    --verde-light: #F0FDF4;
+    --rosa: #EC4899;
+    --rosa-light: #FDF2F8;
+    --blu: #2563EB;
+    --blu-light: #EFF6FF;
+    --giallo: #EAB308;
+    --giallo-light: #FEFCE8;
+    --rosso: #DC2626;
+    --bg: #FFFBF5;
+    --card: #FFFFFF;
+    --testo: #1C1917;
+    --testo-muted: #78716C;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    background: linear-gradient(135deg, #7C3AED 0%, #EC4899 50%, #F97316 100%);
+    padding: 2rem 1rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '?';
+    position: absolute;
+    font-family: 'Fredoka One', cursive;
+    font-size: 20rem;
+    color: rgba(255,255,255,0.05);
+    top: -4rem;
+    right: -2rem;
+    pointer-events: none;
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 0.8rem;
+  }
+  .header h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .header p {
+    color: rgba(255,255,255,0.9);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  /* ===== MAESTRA BANNER ===== */
+  .maestra-banner {
+    background: #1C1917;
+    color: #FEF3C7;
+    text-align: center;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .maestra-banner:hover { background: #292524; }
+  .maestra-banner span { color: #F97316; }
+
+  /* ===== NAV SEZIONI ===== */
+  .sezioni-nav {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1.5rem 1rem 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .sezioni-nav::-webkit-scrollbar { display: none; }
+
+  .sez-btn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 2.5px solid transparent;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.8rem;
+    cursor: pointer;
+    background: white;
+    color: var(--testo-muted);
+    border-color: #E7E5E4;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .sez-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .sez-btn.active {
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .sez-btn .emoji { font-size: 1rem; }
+
+  /* ===== CONTENUTO SEZIONE ===== */
+  .main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem 1rem 4rem;
+  }
+
+  .sezione {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .sezione.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .sez-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1.2rem 1.5rem;
+    border-radius: 16px;
+    background: white;
+    border: 2px solid currentColor;
+  }
+  .sez-header .sez-emoji { font-size: 2.5rem; }
+  .sez-header h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+  .sez-header p {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--testo-muted);
+    margin-top: 0.2rem;
+  }
+
+  /* ===== PERSONAGGIO ===== */
+  .personaggio-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    border: 2px solid rgba(0,0,0,0.08);
+    background: white;
+  }
+  .personaggio-avatar {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid currentColor;
+  }
+  .personaggio-info h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+  }
+  .personaggio-info p {
+    font-size: 0.8rem;
+    color: var(--testo-muted);
+    font-weight: 600;
+  }
+  .personaggio-battuta {
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: 0.3rem;
+    font-weight: 700;
+  }
+
+  /* ===== DOMANDE ===== */
+  .domande-grid {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .domanda-btn {
+    width: 100%;
+    text-align: left;
+    padding: 1rem 1.2rem;
+    border-radius: 14px;
+    border: 2.5px solid transparent;
+    background: white;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--testo);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    position: relative;
+  }
+  .domanda-btn:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+  .domanda-btn.aperta {
+    color: white;
+    border-color: transparent;
+  }
+  .domanda-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    flex-shrink: 0;
+    background: rgba(0,0,0,0.08);
+  }
+  .domanda-btn.aperta .domanda-num {
+    background: rgba(255,255,255,0.3);
+    color: white;
+  }
+  .domanda-testo { flex: 1; line-height: 1.3; }
+  .domanda-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+  }
+  .domanda-btn.aperta .domanda-icon { transform: rotate(180deg); }
+
+  /* ===== RISPOSTA ===== */
+  .risposta-box {
+    display: none;
+    padding: 1.2rem 1.5rem;
+    border-radius: 0 0 14px 14px;
+    margin-top: -8px;
+    margin-bottom: 0.8rem;
+    border: 2.5px solid transparent;
+    border-top: none;
+    background: #FAFAF9;
+  }
+  .risposta-box.aperta { display: block; animation: slideDown 0.3s ease; }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .risposta-testo {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--testo);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .risposta-controls {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-voce {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: white;
+  }
+  .btn-voce:hover { opacity: 0.9; transform: scale(1.04); }
+  .btn-voce:active { transform: scale(0.97); }
+  .btn-stop {
+    background: #6B7280;
+  }
+
+  .battuta-esperto {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.04);
+    font-size: 0.82rem;
+    font-style: italic;
+    font-weight: 700;
+    color: var(--testo-muted);
+  }
+
+  /* ===== MODAL MAESTRA ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .modal-overlay.aperta { display: flex; }
+  .modal {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    max-width: 520px;
+    width: 100%;
+    position: relative;
+    animation: popIn 0.3s cubic-bezier(0.175,0.885,0.32,1.275);
+  }
+  @keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #F3F4F6;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    color: #374151;
+  }
+  .modal h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--testo);
+  }
+  .modal p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--testo);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.75rem;
+    color: var(--testo-muted);
+    font-weight: 700;
+  }
+
+  /* ===== VOCE LOADING ===== */
+  .voce-loading {
+    display: inline-flex;
+    gap: 3px;
+    align-items: center;
+    margin-left: 4px;
+  }
+  .voce-loading span {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: bounce 0.6s infinite alternate;
+  }
+  .voce-loading span:nth-child(2) { animation-delay: 0.2s; }
+  .voce-loading span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-5px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-badge">Classe 4ª A</div>
+  <h1>🔍 I Perché della 4ª A</h1>
+  <p>36 domande • 7 argomenti • ∞ curiosità</p>
+</div>
+
+<!-- BANNER MAESTRA -->
+<div class="maestra-banner" onclick="apriModalMaestra()">
+  ⚠️ Attenzione: risposte verificate dagli esperti. <span>Clicca per scoprire perché la Maestra Cristina non le sapeva già tutte!</span> ⚠️
+</div>
+
+<!-- NAVIGAZIONE SEZIONI -->
+<div class="sezioni-nav">
+  <button class="sez-btn active" onclick="mostraSezione(0,this)" style="background:var(--verde);color:white;border-color:var(--verde)">
+    <span class="emoji">🌍</span> Natura
+  </button>
+  <button class="sez-btn" onclick="mostraSezione(1,this)" style="">
+    <span class="emoji">🐾</span> Animali
+  </button>
+  <button class="sez-btn" onclick="mostraSezione(2,this)" style="">
+    <span class="emoji">🌿</span> Piante
+  </button>
+  <button class="sez-btn" onclick="mostraSezione(3,this)" style="">
+    <span class="emoji">🏅</span> Sport
+  </button>
+  <button class="sez-btn" onclick="mostraSezione(4,this)" style="">
+    <span class="emoji">👥</span> Persone
+  </button>
+  <button class="sez-btn" onclick="mostraSezione(5,this)" style="">
+    <span class="emoji">🔬</span> Scienza
+  </button>
+  <button class="sez-btn" onclick="mostraSezione(6,this)" style="">
+    <span class="emoji">❓</span> Originali
+  </button>
+</div>
+
+<div class="main">
+
+<!-- ===== SEZIONE 1: NATURA ===== -->
+<div class="sezione active" id="sez-0">
+  <div class="sez-header" style="color:var(--verde);border-color:var(--verde-light)">
+    <div class="sez-emoji">🌍</div>
+    <div>
+      <h2 style="color:var(--verde)">Natura & Ambiente</h2>
+      <p>Il pianeta, il cielo, le grandi domande</p>
+    </div>
+  </div>
+
+  <div class="personaggio-card" style="border-color:var(--verde-light)">
+    <div class="personaggio-avatar" style="border-color:var(--verde)">
+      <svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="35" cy="35" r="35" fill="#D1FAE5"/>
+        <circle cx="35" cy="26" r="13" fill="#F5CBA7"/>
+        <ellipse cx="30" cy="24" rx="3" ry="3.5" fill="white"/>
+        <ellipse cx="40" cy="24" rx="3" ry="3.5" fill="white"/>
+        <circle cx="30" cy="25" r="1.5" fill="#1C1917"/>
+        <circle cx="40" cy="25" r="1.5" fill="#1C1917"/>
+        <path d="M29 31 Q35 35 41 31" stroke="#92400E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <rect x="20" y="37" width="30" height="22" rx="8" fill="#16A34A"/>
+        <rect x="26" y="37" width="18" height="8" fill="#F5CBA7"/>
+        <ellipse cx="35" cy="12" rx="12" ry="7" fill="#92400E"/>
+        <rect x="23" y="10" width="24" height="5" rx="2" fill="#78350F"/>
+        <path d="M20 50 Q10 45 12 55" stroke="#16A34A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M50 50 Q60 45 58 55" stroke="#16A34A" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="personaggio-info">
+      <h3 style="color:var(--verde)">🎙️ Davide Attembrock</h3>
+      <p>Naturalista e narratore del pianeta</p>
+      <div class="personaggio-battuta" style="color:var(--verde)">
+        "Ogni domanda su questo pianeta merita risposta. Tranne quelle di matematica, quelle le lascio alla Maestra Cristina."
+      </div>
+    </div>
+  </div>
+
+  <div class="domande-grid" id="domande-0"></div>
+</div>
+
+<!-- ===== SEZIONE 2: ANIMALI ===== -->
+<div class="sezione" id="sez-1">
+  <div class="sez-header" style="color:var(--arancio);border-color:var(--arancio-light)">
+    <div class="sez-emoji">🐾</div>
+    <div>
+      <h2 style="color:var(--arancio)">Animali</h2>
+      <p>Code, zampe, occhi e versi misteriosi</p>
+    </div>
+  </div>
+
+  <div class="personaggio-card" style="border-color:var(--arancio-light)">
+    <div class="personaggio-avatar" style="border-color:var(--arancio)">
+      <svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="35" cy="35" r="35" fill="#FFF7ED"/>
+        <circle cx="35" cy="27" r="13" fill="#FBBF24"/>
+        <ellipse cx="30" cy="25" rx="3" ry="3.5" fill="white"/>
+        <ellipse cx="40" cy="25" rx="3" ry="3.5" fill="white"/>
+        <circle cx="30" cy="26" r="1.5" fill="#1C1917"/>
+        <circle cx="40" cy="26" r="1.5" fill="#1C1917"/>
+        <path d="M30 32 Q35 36 40 32" stroke="#92400E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <rect x="20" y="38" width="30" height="22" rx="8" fill="#F97316"/>
+        <rect x="26" y="38" width="18" height="8" fill="#FCD34D"/>
+        <circle cx="30" cy="24" r="2" fill="#EF4444" opacity="0.4"/>
+        <circle cx="40" cy="24" r="2" fill="#EF4444" opacity="0.4"/>
+        <path d="M18 20 Q12 15 15 8 Q20 14 22 20" fill="#FBBF24"/>
+        <path d="M52 20 Q58 15 55 8 Q50 14 48 20" fill="#FBBF24"/>
+        <text x="28" y="55" font-size="8" fill="white" font-weight="bold">Dott.ssa</text>
+      </svg>
+    </div>
+    <div class="personaggio-info">
+      <h3 style="color:var(--arancio)">🩺 Dottoressa Dolittla</h3>
+      <p>Veterinaria che parla con gli animali</p>
+      <div class="personaggio-battuta" style="color:var(--arancio)">
+        "Ho chiesto a un panda gigante se conosce la Maestra Cristina. Ha smesso di mangiare bambù per due ore dallo spavento."
+      </div>
+    </div>
+  </div>
+
+  <div class="domande-grid" id="domande-1"></div>
+</div>
+
+<!-- ===== SEZIONE 3: PIANTE ===== -->
+<div class="sezione" id="sez-2">
+  <div class="sez-header" style="color:#65A30D;border-color:#F7FEE7">
+    <div class="sez-emoji">🌿</div>
+    <div>
+      <h2 style="color:#65A30D">Piante & Frutti</h2>
+      <p>Semi, fiori e misteri da giardino</p>
+    </div>
+  </div>
+
+  <div class="personaggio-card" style="border-color:#F7FEE7">
+    <div class="personaggio-avatar" style="border-color:#65A30D">
+      <svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="35" cy="35" r="35" fill="#F7FEE7"/>
+        <circle cx="35" cy="27" r="13" fill="#D9B99B"/>
+        <ellipse cx="30" cy="25" rx="3" ry="3.5" fill="white"/>
+        <ellipse cx="40" cy="25" rx="3" ry="3.5" fill="white"/>
+        <circle cx="30" cy="26" r="1.5" fill="#1C1917"/>
+        <circle cx="40" cy="26" r="1.5" fill="#1C1917"/>
+        <path d="M30 32 Q35 35 40 32" stroke="#78350F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <rect x="20" y="38" width="30" height="22" rx="8" fill="#65A30D"/>
+        <rect x="26" y="38" width="18" height="8" fill="#D9B99B"/>
+        <ellipse cx="35" cy="13" rx="8" ry="6" fill="#4D7C0F"/>
+        <path d="M27 15 Q35 8 43 15" stroke="#4D7C0F" stroke-width="2" fill="none"/>
+        <circle cx="35" cy="14" r="3" fill="#84CC16"/>
+        <path d="M15 52 Q12 45 18 48" stroke="#65A30D" stroke-width="2" fill="none"/>
+        <path d="M55 52 Q58 45 52 48" stroke="#65A30D" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+    <div class="personaggio-info">
+      <h3 style="color:#65A30D">🌱 Professor Mendelli</h3>
+      <p>Botanico e genetista delle piante</p>
+      <div class="personaggio-battuta" style="color:#65A30D">
+        "In classe avete fatto germogliare i semi di mela! La Maestra Cristina invece germogliò nell'era dei dinosauri. Risultati simili."
+      </div>
+    </div>
+  </div>
+
+  <div class="domande-grid" id="domande-2"></div>
+</div>
+
+<!-- ===== SEZIONE 4: SPORT ===== -->
+<div class="sezione" id="sez-3">
+  <div class="sez-header" style="color:var(--blu);border-color:var(--blu-light)">
+    <div class="sez-emoji">🏅</div>
+    <div>
+      <h2 style="color:var(--blu)">Sport & Campioni</h2>
+      <p>Medaglie, record e domande da stadio</p>
+    </div>
+  </div>
+
+  <div class="personaggio-card" style="border-color:var(--blu-light)">
+    <div class="personaggio-avatar" style="border-color:var(--blu)">
+      <svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="35" cy="35" r="35" fill="#EFF6FF"/>
+        <circle cx="35" cy="26" r="13" fill="#C49A6C"/>
+        <ellipse cx="30" cy="24" rx="3" ry="3.5" fill="white"/>
+        <ellipse cx="40" cy="24" rx="3" ry="3.5" fill="white"/>
+        <circle cx="30" cy="25" r="1.5" fill="#1C1917"/>
+        <circle cx="40" cy="25" r="1.5" fill="#1C1917"/>
+        <path d="M30 31 Q35 35 40 31" stroke="#78350F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <rect x="20" y="37" width="30" height="22" rx="8" fill="#2563EB"/>
+        <rect x="26" y="37" width="18" height="8" fill="#C49A6C"/>
+        <circle cx="35" cy="14" r="8" fill="#1D4ED8"/>
+        <circle cx="35" cy="14" r="5" fill="#DBEAFE"/>
+        <text x="32" y="18" font-size="7" fill="#1D4ED8" font-weight="900">TV</text>
+        <path d="M18 52 Q10 48 12 56" stroke="#2563EB" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M52 52 Q60 48 58 56" stroke="#2563EB" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="personaggio-info">
+      <h3 style="color:var(--blu)">📺 Sandrone Piero</h3>
+      <p>Commentatore sportivo enciclopedico</p>
+      <div class="personaggio-battuta" style="color:var(--blu)">
+        "Ho visto più partite io di quante lezioni di geometria abbia dato la Maestra Cristina. E ve ne assicuro, le mie sono più avvincenti."
+      </div>
+    </div>
+  </div>
+
+  <div class="domande-grid" id="domande-3"></div>
+</div>
+
+<!-- ===== SEZIONE 5: PERSONE ===== -->
+<div class="sezione" id="sez-4">
+  <div class="sez-header" style="color:var(--viola);border-color:var(--viola-light)">
+    <div class="sez-emoji">👥</div>
+    <div>
+      <h2 style="color:var(--viola)">Persone & Società</h2>
+      <p>Popoli, storie e numeri sul mondo</p>
+    </div>
+  </div>
+
+  <div class="personaggio-card" style="border-color:var(--viola-light)">
+    <div class="personaggio-avatar" style="border-color:var(--viola)">
+      <svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="35" cy="35" r="35" fill="#EDE9FE"/>
+        <circle cx="35" cy="27" r="13" fill="#C49A6C"/>
+        <ellipse cx="30" cy="25" rx="3" ry="3.5" fill="white"/>
+        <ellipse cx="40" cy="25" rx="3" ry="3.5" fill="white"/>
+        <circle cx="30" cy="26" r="1.5" fill="#1C1917"/>
+        <circle cx="40" cy="26" r="1.5" fill="#1C1917"/>
+        <path d="M30 32 Q35 36 40 32" stroke="#78350F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <rect x="20" y="38" width="30" height="22" rx="8" fill="#7C3AED"/>
+        <rect x="26" y="38" width="18" height="8" fill="#C49A6C"/>
+        <path d="M22 28 Q20 18 26 14 Q30 10 35 12 Q40 10 44 14 Q50 18 48 28" fill="#1C1917"/>
+        <path d="M22 28 Q24 32 28 30" fill="#1C1917"/>
+        <ellipse cx="35" cy="12" rx="4" ry="3" fill="#FFD700"/>
+        <path d="M31 12 L35 8 L39 12" fill="#FFD700"/>
+      </svg>
+    </div>
+    <div class="personaggio-info">
+      <h3 style="color:var(--viola)">👑 Professoressa Cleofa</h3>
+      <p>Storica e detective del passato</p>
+      <div class="personaggio-battuta" style="color:var(--viola)">
+        "Io governavo un impero. La Maestra Cristina invece governava già la 4ª A quando io ero bambina. Siamo coetanee, praticamente."
+      </div>
+    </div>
+  </div>
+
+  <div class="domande-grid" id="domande-4"></div>
+</div>
+
+<!-- ===== SEZIONE 6: SCIENZA ===== -->
+<div class="sezione" id="sez-5">
+  <div class="sez-header" style="color:var(--rosa);border-color:var(--rosa-light)">
+    <div class="sez-emoji">🔬</div>
+    <div>
+      <h2 style="color:var(--rosa)">Scienza & Invenzioni</h2>
+      <p>Piccoli misteri da laboratorio</p>
+    </div>
+  </div>
+
+  <div class="personaggio-card" style="border-color:var(--rosa-light)">
+    <div class="personaggio-avatar" style="border-color:var(--rosa)">
+      <svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="35" cy="35" r="35" fill="#FDF2F8"/>
+        <circle cx="35" cy="27" r="13" fill="#E8C5A0"/>
+        <ellipse cx="30" cy="25" rx="3" ry="3.5" fill="white"/>
+        <ellipse cx="40" cy="25" rx="3" ry="3.5" fill="white"/>
+        <circle cx="30" cy="26" r="1.8" fill="#1C1917"/>
+        <circle cx="40" cy="26" r="1.8" fill="#1C1917"/>
+        <rect x="26" y="22" width="10" height="7" rx="3" fill="none" stroke="#374151" stroke-width="1.5"/>
+        <rect x="34" y="22" width="10" height="7" rx="3" fill="none" stroke="#374151" stroke-width="1.5"/>
+        <rect x="30" y="23" width="10" height="1.5" fill="#374151"/>
+        <path d="M30 32 Q35 36 40 32" stroke="#78350F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <rect x="20" y="38" width="30" height="22" rx="8" fill="#EC4899"/>
+        <rect x="26" y="38" width="18" height="8" fill="#E8C5A0"/>
+        <path d="M22 26 Q20 16 30 12 Q35 14 40 12 Q50 16 48 26" fill="#374151"/>
+        <path d="M22 26 Q24 30 28 28" fill="#374151"/>
+        <path d="M48 26 Q46 30 42 28" fill="#374151"/>
+      </svg>
+    </div>
+    <div class="personaggio-info">
+      <h3 style="color:var(--rosa)">⚗️ Mariella Curie</h3>
+      <p>Scienziata e inventrice seriale</p>
+      <div class="personaggio-battuta" style="color:var(--rosa)">
+        "In classe avete fatto esperimenti fantastici — i bruchi, i semi, le frazioni coi biscotti alla Nutella! Io ho solo scoperto la radioattività. Voi avete fatto di meglio."
+      </div>
+    </div>
+  </div>
+
+  <div class="domande-grid" id="domande-5"></div>
+</div>
+
+<!-- ===== SEZIONE 7: ORIGINALI ===== -->
+<div class="sezione" id="sez-6">
+  <div class="sez-header" style="color:var(--giallo);border-color:var(--giallo-light)">
+    <div class="sez-emoji">❓</div>
+    <div>
+      <h2 style="color:#92400E">Le più originali</h2>
+      <p>Due domande che non sapevamo dove mettere</p>
+    </div>
+  </div>
+
+  <div class="personaggio-card" style="border-color:var(--giallo-light)">
+    <div class="personaggio-avatar" style="border-color:var(--giallo)">
+      <svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="35" cy="35" r="35" fill="#FEFCE8"/>
+        <circle cx="35" cy="27" r="13" fill="#FCD34D"/>
+        <ellipse cx="30" cy="25" rx="3.5" ry="3.5" fill="white"/>
+        <ellipse cx="40" cy="25" rx="3.5" ry="3.5" fill="white"/>
+        <circle cx="30" cy="26" r="2" fill="#1C1917"/>
+        <circle cx="40" cy="26" r="2" fill="#1C1917"/>
+        <path d="M29 32 Q35 38 41 32" stroke="#92400E" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="20" y="38" width="30" height="22" rx="8" fill="#EAB308"/>
+        <rect x="26" y="38" width="18" height="8" fill="#FCD34D"/>
+        <text x="29" y="22" font-size="12" fill="#92400E">🎩</text>
+        <path d="M15 50 Q8 44 10 54" stroke="#EAB308" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M55 50 Q62 44 60 54" stroke="#EAB308" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="personaggio-info">
+      <h3 style="color:#92400E">🎩 Il Grande Filosofo</h3>
+      <p>Esperto delle domande impossibili</p>
+      <div class="personaggio-battuta" style="color:#92400E">
+        "Le domande più strane sono quelle che fanno scoprire le cose più belle. Come ad esempio: perché la Maestra Cristina sorride durante le lezioni di matematica?"
+      </div>
+    </div>
+  </div>
+
+  <div class="domande-grid" id="domande-6"></div>
+</div>
+
+</div><!-- fine main -->
+
+<!-- FOOTER -->
+<div class="footer">
+  🌟 I Perché della 4ª A — Anno scolastico in corso 🌟<br>
+  <span style="color:var(--rosso)">❤️</span> Grazie Maestra Cristina (che è bellissima, giovanissima e dolcissima — ma fa lezioni di matematica lunghissime)
+</div>
+
+<!-- MODAL MAESTRA -->
+<div class="modal-overlay" id="modalMaestra">
+  <div class="modal">
+    <button class="modal-close" onclick="chiudiModalMaestra()">✕</button>
+    <h2>📜 Il Dossier Segreto della Maestra Cristina</h2>
+    <p>🦕 <strong>Età:</strong> Nasce quando esistono ancora i dinosauri. Alcuni fossili trovati in classe potrebbero essere suoi compiti delle elementari.</p>
+    <p>😤 <strong>Aspetto:</strong> Brutta, vecchia e cattiva... secondo lei. In realtà è la più bella della scuola, ma non glielo diciamo o si monta la testa.</p>
+    <p>🧮 <strong>Specialità:</strong> Lezioni di matematica e geometria di durata geologica. Gli studenti fossili trovati in aula risalgono alla terza spiegazione dei triangoli.</p>
+    <p>🐛 <strong>Esperimenti:</strong> Ha fatto sfarfallare bruchi, germogliare semi di mela, capire le frazioni CON I BISCOTTI ALLA NUTELLA (geniale!), progettare il Pong in aula informatica.</p>
+    <p>📊 <strong>Frazioni:</strong> "Questa torta è divisa in 8 parti — ne mangiate 3/8, ne restano 5/8... ma prima finiamo i biscotti."</p>
+    <p>🤔 <strong>Conclusione:</strong> Alcune risposte del giornalino avrebbe dovuto saperle già — essendo nata quando certe cose succedevano. Ma era troppo occupata a insegnarvi la matematica.</p>
+    <div style="text-align:center;margin-top:1.2rem">
+      <button onclick="chiudiModalMaestra();leggiMaestra()" style="background:var(--viola);color:white;border:none;padding:0.6rem 1.5rem;border-radius:999px;font-family:'Nunito',sans-serif;font-weight:800;font-size:0.9rem;cursor:pointer;">
+        🔊 Ascolta il dossier
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SEZIONI = [
+  { colore: '#16A34A', coloreBtn: '#16A34A' },
+  { colore: '#F97316', coloreBtn: '#F97316' },
+  { colore: '#65A30D', coloreBtn: '#65A30D' },
+  { colore: '#2563EB', coloreBtn: '#2563EB' },
+  { colore: '#7C3AED', coloreBtn: '#7C3AED' },
+  { colore: '#EC4899', coloreBtn: '#EC4899' },
+  { colore: '#EAB308', coloreBtn: '#92400E' }
+];
+
+const DATI = [
+  // SEZIONE 0: NATURA
+  [
+    {
+      q: "Perché in Africa fa molto caldo e in Italia fa meno caldo?",
+      r: "Perché l'Africa si trova vicino all'equatore: i raggi del sole vi arrivano quasi verticali e concentrano molta energia su una piccola superficie. L'Italia è più lontana dall'equatore: i raggi arrivano più obliqui e scaldano meno. È come puntare una torcia dritta su un foglio (Africa) oppure di sbieco (Italia).",
+      b: "Davide Attembrock dice: «L'Africa è come stare sotto una torcia accesa. L'Italia ha i raggi del sole in diagonale — e anche il Sole ha senso del design!»"
+    },
+    {
+      q: "Di cosa sono fatti i sassi?",
+      r: "I sassi sono fatti di minerali, cioè sostanze naturali solide. I più comuni sono quarzo, feldspato e mica. Le rocce si formano in tre modi: raffreddamento del magma vulcanico (rocce ignee, come granito e basalto), sedimentazione di materiali (rocce sedimentarie, come il calcare) o trasformazione per calore e pressione (rocce metamorfiche, come il marmo).",
+      b: "Davide Attembrock dice: «Ogni sasso ha la sua storia — alcuni hanno milioni di anni. Sono più vecchi della Maestra Cristina. Di pochissimo, però.»"
+    },
+    {
+      q: "Perché il mare è salato?",
+      r: "Da milioni di anni i fiumi erodono le rocce e trasportano sali minerali verso il mare. L'acqua del mare evapora, ma i sali restano e si accumulano progressivamente. La concentrazione media di sale negli oceani è circa il 3,5%. Questo lo sapete già dal giornalino — bravi!",
+      b: "Davide Attembrock dice: «Il mare è salato da milioni di anni. Se la Maestra Cristina ci fosse già nata, avrebbe visto il processo dall'inizio.»"
+    },
+    {
+      q: "Quante stelle ci sono nello spazio?",
+      r: "Le stime scientifiche indicano che nell'universo osservabile ci sono tra 10 elevato a 22 e 10 elevato a 24 stelle. In parole semplici: decine di migliaia di miliardi di miliardi di stelle. Un numero impossibile da immaginare — e impossibile da contare con esattezza. Nella nostra sola galassia, la Via Lattea, ci sono tra 100 e 400 miliardi di stelle.",
+      b: "Davide Attembrock dice: «Ci sono più stelle nell'universo che granelli di sabbia su tutte le spiagge della Terra. E ancora più problemi di matematica da correggere.»"
+    },
+    {
+      q: "Se il Big Bang ha creato il mondo… chi ha creato il Big Bang?",
+      r: "La scienza attualmente non ha una risposta certa. Il Big Bang è il momento da cui ha avuto origine lo spazio e il tempo stesso: chiedersi cosa c'era prima non ha senso fisico, perché il tempo non esisteva ancora. È una delle domande più grandi della fisica e della filosofia. Alcune teorie parlano di multiverso, ma nessuna è dimostrata.",
+      b: "Davide Attembrock dice: «Questa domanda mette in crisi i migliori fisici del mondo. E anche la Maestra Cristina, che però dice di ricordarselo vagamente.»"
+    },
+    {
+      q: "Se tutti noi non ci muovessimo, cosa succederebbe?",
+      r: "Nel breve termine tutti gli animali morirebbero rapidamente: cuore, polmoni e sistema digestivo funzionano grazie a movimenti continui e involontari. Le piante continuerebbero la fotosintesi ancora per un po'. Nel lungo termine l'ecosistema collasserebbe: senza impollinazione, senza catena alimentare, senza decomposizione, la vita si estinguerebbe.",
+      b: "Davide Attembrock dice: «È la domanda più originale del giornalino. Solo una mente brillante può chiederla. O qualcuno che vuole evitare l'ora di ginnastica.»"
+    }
+  ],
+
+  // SEZIONE 1: ANIMALI
+  [
+    {
+      q: "Perché gli animali vedono in modo diverso dagli uomini?",
+      r: "Perché i loro occhi si sono evoluti per le loro specifiche esigenze di sopravvivenza. Gli occhi contengono coni per i colori e bastoncelli per luce e buio. Gli umani hanno 3 tipi di coni, i cani ne hanno 2, alcuni insetti ne hanno molti di più. Anche la posizione degli occhi cambia: i predatori li hanno frontali per calcolare le distanze, le prede li hanno laterali per vedere i pericoli da tutti i lati.",
+      b: "Dottoressa Dolittla dice: «Ho chiesto a un aquila come vede il mondo. Ha risposto: 'meglio di te'. Non avevo argomenti.»"
+    },
+    {
+      q: "Perché gli animali non parlano e fanno dei versi?",
+      r: "Comunicano, ma in modo diverso: non hanno le strutture anatomiche necessarie per il linguaggio umano. I loro versi trasmettono però informazioni reali: pericolo, richiamo del partner, territorio, fame. Alcune specie come delfini e corvi hanno sistemi comunicativi molto complessi. I cani vi capiscono benissimo — solo che fingono di no quando gli chiedete di portare la palla.",
+      b: "Dottoressa Dolittla dice: «Ho fatto tradurre il miagolio del gatto di classe. Diceva: 'quando è l'intervallo?' Siamo tutti d'accordo.»"
+    },
+    {
+      q: "Perché alcuni cani hanno la coda lunga e altri cortissima?",
+      r: "È in parte genetica — razze diverse, geni diversi — e in parte conseguenza della selezione operata dall'uomo nel corso dei secoli. Alcune razze sono state selezionate per avere code corte perché lavoravano in spazi angusti. In Italia è vietato tagliare chirurgicamente la coda ai cani.",
+      b: "Dottoressa Dolittla dice: «I cani con la coda corta la scodinzolano lo stesso, con grande impegno. Sono un esempio per tutti noi.»"
+    },
+    {
+      q: "Perché le farfalle hanno il pelo?",
+      r: "Come spiega già bene il vostro giornalino: non è vero pelo, ma minuscole squame chitinose ricoperte da fibre sottilissime. Servono per termoregolazione — assorbono il calore del sole — per il riconoscimento tra individui della stessa specie, e per confondere i predatori con i colori. I bruchi della vostra classe stanno sfarfallando proprio grazie a questo!",
+      b: "Dottoressa Dolittla dice: «I bruchi della 4ª A stanno diventando farfalle magnifiche! Anche la Maestra Cristina era una larva una volta... evidentemente.»"
+    },
+    {
+      q: "Vorrei sapere proprio tutte le curiosità sui panda!",
+      r: "Eccole! Il panda gigante mangia bambù per 12 ore al giorno, tra 9 e 18 chili. Ha un intestino da carnivoro ma mangia solo piante — è rimasto vegetariano per scelta evolutiva. Ha uno pseudo-pollice per afferrare meglio il bambù. Alla nascita pesa solo 100 grammi — come un panetto di burro — ed è rosa, cieco e senza pelo. Vivono solo in Cina. In natura ci sono circa 1.900 esemplari selvatici.",
+      b: "Dottoressa Dolittla dice: «I panda mangiano bambù per 12 ore al giorno. La Maestra Cristina fa lezione per un tempo simile. Stessa resistenza, stessa determinazione.»"
+    },
+    {
+      q: "L'odore della puzzola fa morire le api?",
+      r: "No, non le uccide. Il secreto della puzzola è molto irritante per i mammiferi ma non è letale per gli insetti. Le api reagiscono all'odore come a una minaccia e possono pungere. La puzzola, protetta dalla sua pelliccia densa, è nota per saccheggiare gli alveari nonostante le punture.",
+      b: "Dottoressa Dolittla dice: «La puzzola è immune alle api. Come la Maestra Cristina è immune alle proteste durante le interrogazioni. Adattamento evolutivo.»"
+    },
+    {
+      q: "La zebra da chi viene mangiata?",
+      r: "I principali predatori della zebra sono: leoni, leopardi, ghepardi, iene maculate, coccodrilli del Nilo durante l'attraversamento dei fiumi, e licaoni — i cani selvatici africani. La zebra si difende con calci potenti e stando in branco.",
+      b: "Dottoressa Dolittla dice: «La zebra ha molti nemici. Ma nessuno è temibile quanto la Maestra Cristina durante un compito a sorpresa.»"
+    },
+    {
+      q: "Perché esistono le zanzare?",
+      r: "Hanno un ruolo ecologico: sono impollinatori — si nutrono anche di nettare — sono cibo per uccelli, pipistrelli, pesci e libellule, e le larve fanno parte delle catene alimentari acquatiche. Solo le femmine pungono, perché hanno bisogno di proteine del sangue per deporre le uova. Il maschio non punge mai.",
+      b: "Dottoressa Dolittla dice: «Le zanzare servono all'ecosistema. Ma nessuno ha ancora trovato a cosa serve il loro rumore alle 3 di notte.»"
+    },
+    {
+      q: "Come fanno i cavalli a correre così veloci?",
+      r: "Grazie a zampe lunghe con muscoli potenti concentrati in alto vicino al corpo, tendini elastici che immagazzinano energia come molle, e passi lunghissimi al galoppo. Il cuore di un cavallo adulto pesa circa 4-5 chili e pompa enormi quantità di sangue. Il record assoluto è 70 virgola 76 chilometri all'ora. I cavalli da corsa tipici raggiungono circa 60 km all'ora in gara.",
+      b: "Dottoressa Dolittla dice: «I cavalli corrono a 60 km/h. La 4ª A corre più veloce ancora quando suona la campanella dell'intervallo.»"
+    },
+    {
+      q: "I gatti che colori vedono?",
+      r: "Come spiega già il vostro giornalino: i gatti vedono principalmente blu e verde, mentre rosso e arancione appaiono come toni grigi. Hanno molti più bastoncelli degli umani, il che li rende eccellenti nella visione notturna. Il loro campo visivo è di circa 200 gradi contro i 180 degli umani.",
+      b: "Dottoressa Dolittla dice: «I gatti vedono benissimo al buio. Utile per sbirciare le risposte durante le verifiche — ma loro non studiano matematica, poveretti.»"
+    },
+    {
+      q: "I cavalli: di che colore vedono il mondo?",
+      r: "I cavalli hanno 2 tipi di coni contro i 3 degli umani e vedono principalmente nei toni del giallo e del blu-violetto. Il rosso e il verde sono difficili da distinguere per loro — sembrano simili. Hanno però un campo visivo di quasi 350 gradi — quasi tutto intorno — utile per avvistare i predatori da ogni direzione.",
+      b: "Dottoressa Dolittla dice: «I cavalli vedono quasi tutto attorno a loro tranne quello che hanno davanti. Come certi studenti durante le verifiche.»"
+    }
+  ],
+
+  // SEZIONE 2: PIANTE
+  [
+    {
+      q: "Quanti fiori corti e quanti fiori lunghi esistono nel mondo?",
+      r: "Non esiste una classificazione ufficiale 'corti e lunghi', ma nel mondo esistono circa 400.000 specie di piante da fiore. Le dimensioni variano dal fiore della Wolffia, che è meno di 1 millimetro, al Rafflesia arnoldii, che può raggiungere 1 metro di diametro. La natura ama la varietà!",
+      b: "Professor Mendelli dice: «400.000 specie di fiori! Meno tipi di triangoli di quanti ne studia la Maestra Cristina, ma con più colori.»"
+    },
+    {
+      q: "Come posso piantare e coltivare piantine da un kiwi maturo?",
+      r: "Si estraggono i semi, si lavano bene e si lasciano asciugare 1 o 2 giorni. Si mettono su cotone umido o carta da cucina bagnata in un vasetto e si aspetta la germinazione, che avviene in 1 o 2 settimane. Poi si trapiantano in vaso con terriccio. Attenzione: ci vogliono anni prima che la pianta produca frutti, e servono piante maschio e femmina vicine per l'impollinazione.",
+      b: "Professor Mendelli dice: «In classe avete già fatto germogliare i semi di mela! Il kiwi è il passo successivo. E poi potrete fare una torta. Con le frazioni.»"
+    },
+    {
+      q: "Perché il kiwi all'esterno è peloso?",
+      r: "I peletti — tecnicamente chiamati tricomi — proteggono il frutto: riducono la perdita di acqua, difendono da insetti e funghi, e riflettono parte della luce solare intensa. Molti frutti e foglie li hanno, ma nel kiwi sono particolarmente visibili.",
+      b: "Professor Mendelli dice: «Il pelo del kiwi è una protezione naturale. Purtroppo non funziona contro i bambini affamati.»"
+    },
+    {
+      q: "Come posso piantare i semi di un arancio?",
+      r: "Si estraggono i semi da un arancio maturo, si lavano e si mettono in acqua tiepida per 24 ore. Si piantano in terriccio morbido a circa 1 centimetro di profondità, si coprono con pellicola trasparente per creare umidità e si tengono in un posto caldo. Germinano in 2-4 settimane. Nota: la pianta potrebbe non produrre frutti identici all'originale perché gli agrumi commerciali sono spesso ibridi.",
+      b: "Professor Mendelli dice: «I semi di arancio germogliano facilmente. Provate! Anche i semi di mela ce l'avete fatta — siete botanici provetti!»"
+    },
+    {
+      q: "È venuto prima l'albero o il frutto che contiene i semi?",
+      r: "La risposta scientifica è: prima esisteva una forma primitiva di pianta senza frutti come li conosciamo. Nel corso dell'evoluzione, alcune piante hanno sviluppato strutture sempre più elaborate per proteggere e disperdere i semi — ecco come sono nati i frutti moderni. Quindi prima c'era qualcosa di simile a una pianta, poi il frutto si è evoluto nel tempo. Come l'uovo e la gallina: stessa logica!",
+      b: "Professor Mendelli dice: «Questa è la domanda più antica del mondo. Anche più antica della Maestra Cristina, e lei è abbastanza antica.»"
+    }
+  ],
+
+  // SEZIONE 3: SPORT
+  [
+    {
+      q: "Chi è la ginnasta più brava del mondo?",
+      r: "Simone Biles degli Stati Uniti è considerata universalmente la più grande ginnasta artistica di tutti i tempi. Ha vinto 9 medaglie olimpiche — di cui 6 ori — e 30 medaglie ai Campionati Mondiali con 23 ori. Ha portato il suo nome nella storia con difficoltà tecniche che portano il suo nome nel regolamento internazionale.",
+      b: "Sandrone Piero dice: «Simone Biles è al ginnastica quello che la Maestra Cristina è alla matematica: inarrestabile e difficile da battere.»"
+    },
+    {
+      q: "Nel 2023 chi ha vinto la gara di ginnastica ritmica?",
+      r: "Ai Campionati Mondiali di ginnastica ritmica 2023 a Valencia, il titolo all-around è stato vinto dalla tedesca Darja Varfolomeev. Secondo posto per l'italiana Sofia Raffaeli, che era campionessa del mondo in carica. Bronzo all'israeliana Daria Atamanov.",
+      b: "Sandrone Piero dice: «L'italiana Sofia Raffaeli ha conquistato l'argento. Proprio come voi prendereste medaglie d'argento alla noia se la lezione di geometria durasse ancora di più.»"
+    },
+    {
+      q: "Qual è la nuotatrice più brava del mondo?",
+      r: "Katie Ledecky degli Stati Uniti detiene il record mondiale sugli 800 e 1500 metri stile libero e ha vinto 14 medaglie olimpiche e 30 ai campionati mondiali. È considerata la più forte nuotatrice del mezzofondo di tutti i tempi.",
+      b: "Sandrone Piero dice: «Katie Ledecky nuota più veloce di molte barche. La Maestra Cristina invece nuota nei problemi di matematica come un pesce. Purtroppo per voi.»"
+    },
+    {
+      q: "Quante regole ci sono nella pallavolo?",
+      r: "Il regolamento ufficiale della federazione internazionale pallavolo, la FIVB, è un documento di oltre 100 pagine con decine di articoli. Le regole principali che un giocatore deve conoscere sono circa una trentina, tra cui rotazioni, numero di tocchi permessi per squadra, regole sulla rete, servizio e sostituzioni.",
+      b: "Sandrone Piero dice: «30 regole nella pallavolo. Meno regole di quante ne applica la Maestra Cristina durante le verifiche. E senza replay.»"
+    },
+    {
+      q: "In che anno è nata la schiacciata di Michael Jordan?",
+      r: "Michael Jordan è nato nel 1963. La schiacciata come gesto tecnico nel basket esiste dagli anni Sessanta-Settanta. Jordan l'ha resa un'icona mondiale tra il 1984 e il 1998, con la sua slam dunk contest del 1988 tra i momenti più celebri della storia del basket.",
+      b: "Sandrone Piero dice: «Jordan ha fatto cose in aria che sfidano la fisica. Il Pong che avete programmato in aula informatica sfida invece la pazienza — ma con ottimi risultati!»"
+    },
+    {
+      q: "Perché l'Italia non va ai Mondiali di calcio?",
+      r: "L'Italia non si è qualificata ai Mondiali 2026. Il 31 marzo 2026 ha perso la finale dei playoff contro la Bosnia ed Erzegovina ai calci di rigore. È la terza eliminazione consecutiva, dopo la Svezia nel 2018 e la Macedonia del Nord nel 2022. Le cause sono problemi strutturali nel calcio giovanile italiano e risultati negativi nelle partite decisive.",
+      b: "Sandrone Piero dice: «L'Italia manca i Mondiali per la terza volta di fila. Ma la Maestra Cristina non manca mai una lezione. Lei è più affidabile della Nazionale.»"
+    }
+  ],
+
+  // SEZIONE 4: PERSONE
+  [
+    {
+      q: "Quanti uomini ci sono al mondo? E quante donne?",
+      r: "La popolazione mondiale è circa 8 miliardi e 100 milioni di persone nel 2024-2025. Ci sono leggermente più uomini che donne: circa il 50 e mezzo percento è maschile e il 49 e mezzo percento femminile. In Europa la situazione è inversa: ci sono più donne che uomini.",
+      b: "Professoressa Cleofa dice: «8 miliardi di persone sul pianeta. La Maestra Cristina le conosce tutte — le ha tutte come studenti, in 2000 anni di insegnamento.»"
+    },
+    {
+      q: "Qual è il paese più vecchio del mondo?",
+      r: "San Marino è la repubblica più antica del mondo ancora esistente, fondata il 3 settembre 301 dopo Cristo. Si trova in Italia, tra Emilia-Romagna e Marche. Se parliamo di civiltà più antiche in senso più ampio, Egitto e Cina sono tra le più longeve della storia.",
+      b: "Professoressa Cleofa dice: «San Marino è nata nel 301 dopo Cristo. Io Cleopatra sono nata prima ancora. La Maestra Cristina ha vissuto con entrambe. Di questo siamo certi.»"
+    },
+    {
+      q: "Qual è l'attrice più famosa del mondo?",
+      r: "Non esiste una risposta oggettiva — dipende dal criterio. Meryl Streep è spesso considerata la più brava della storia per numero di premi e riconoscimenti. Tra le più seguite dal pubblico giovane oggi ci sono Zendaya e Jennifer Lawrence. Ognuno ha la sua preferita!",
+      b: "Professoressa Cleofa dice: «L'attrice più famosa? La Maestra Cristina, ogni giorno, recita la parte della persona cattiva. Ma sappiamo tutti com'è davvero.»"
+    },
+    {
+      q: "Com'è iniziata la Seconda Guerra Mondiale?",
+      r: "La Germania nazista di Hitler invase la Polonia il 1 settembre 1939, dando così inizio alla Seconda Guerra Mondiale. Due giorni dopo, Gran Bretagna e Francia dichiararono guerra alla Germania. Le cause profonde includono: il trattato di Versailles che aveva umiliato la Germania nel 1919, la crisi economica del 1929, e l'ascesa del nazismo al potere.",
+      b: "Professoressa Cleofa dice: «Ho studiato molte guerre nella storia. La più lunga in assoluto è però l'ora di matematica del venerdì pomeriggio.»"
+    }
+  ],
+
+  // SEZIONE 5: SCIENZA
+  [
+    {
+      q: "Come crearono le bombole di ossigeno i Fenici?",
+      r: "Come spiega già bene il vostro giornalino, i Fenici non avevano le bombole di ossigeno! Per immergersi in mare trattenevano il respiro a lungo — apnea — oppure usavano canne di bambù come piccole cannucce. Le prime vere bombole subacquee autonome furono inventate nel 1943 dai francesi Jacques Cousteau ed Emile Gagnan. Molto dopo i Fenici!",
+      b: "Mariella Curie dice: «I Fenici erano ingegnosi, ma senza bombole. Anche in classe fate esperimenti senza attrezzatura da laboratorio — e i risultati sono spettacolari!»"
+    },
+    {
+      q: "Com'è la foto di un pettirosso?",
+      r: "Il pettirosso europeo è un piccolo uccello di 13-14 centimetri. Gli adulti hanno il petto e la fronte di colore arancione brillante — da cui il nome. Il resto del piumaggio è marrone-olivastro e il ventre è bianco sporco. Ha occhi scuri e vivaci, un becco sottile e zampe sottili. È uno degli uccelli più riconoscibili d'Europa e si vede in Italia tutto l'anno!",
+      b: "Mariella Curie dice: «Il pettirosso è arancione sul petto. Proprio come la curiosità scientifica della 4ª A — brillante e inconfondibile!»"
+    }
+  ],
+
+  // SEZIONE 6: ORIGINALI
+  [
+    {
+      q: "Come posso scoprire cosa c'è nella cantina dei miei genitori?",
+      r: "Il vostro giornalino ha già la risposta più saggia che esiste: chiedere! È sempre la strategia migliore. Puoi anche portare una torcia e guardare insieme a loro — potrebbe diventare un'avventura. Alcune cantine nascondono tesori, altre solo vecchie scatole. Vale sempre la pena scoprire!",
+      b: "Il Grande Filosofo dice: «La cantina è misteriosa. Ma chiedere ai genitori è un atto di coraggio filosofico che Socrate stesso avrebbe apprezzato.»"
+    },
+    {
+      q: "Ma io e Toutou… ci dobbiamo dividere il foglio?",
+      r: "Sì, probabilmente sì. Ma dipende dalla Maestra Cristina! Questa è la domanda più saggia del giornalino: a volte le cose più semplici hanno la risposta più semplice. E dividere il foglio significa anche condividere il lavoro — che è esattamente quello che avete fatto quest'anno con tutti i vostri esperimenti insieme!",
+      b: "Il Grande Filosofo dice: «Dividere il foglio è come dividere una torta in frazioni. La risposta è sì — e avete già imparato a farlo coi biscotti alla Nutella!»"
+    }
+  ]
+];
+
+let voceSintetica = null;
+let domandaAperta = null;
+
+function mostraSezione(idx, btn) {
+  document.querySelectorAll('.sezione').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.sez-btn').forEach(b => {
+    b.classList.remove('active');
+    b.style.background = 'white';
+    b.style.color = 'var(--testo-muted)';
+    b.style.borderColor = '#E7E5E4';
+  });
+  document.getElementById('sez-' + idx).classList.add('active');
+  btn.classList.add('active');
+  btn.style.background = SEZIONI[idx].colore;
+  btn.style.color = 'white';
+  btn.style.borderColor = SEZIONI[idx].colore;
+  fermaVoce();
+}
+
+function renderDomande() {
+  DATI.forEach((sez, si) => {
+    const container = document.getElementById('domande-' + si);
+    sez.forEach((d, di) => {
+      const id = 'dom-' + si + '-' + di;
+      const col = SEZIONI[si].colore;
+
+      const wrapper = document.createElement('div');
+
+      const btn = document.createElement('button');
+      btn.className = 'domanda-btn';
+      btn.id = 'btn-' + id;
+      btn.style.borderColor = '#E7E5E4';
+      btn.innerHTML = `
+        <span class="domanda-num" style="color:${col}">${di + 1}</span>
+        <span class="domanda-testo">${d.q}</span>
+        <span class="domanda-icon">▼</span>
+      `;
+      btn.onclick = () => toggleDomanda(id, si, di);
+
+      const risp = document.createElement('div');
+      risp.className = 'risposta-box';
+      risp.id = 'risp-' + id;
+      risp.style.borderColor = col + '44';
+      risp.innerHTML = `
+        <div class="risposta-testo">${d.r}</div>
+        <div class="risposta-controls">
+          <button class="btn-voce" style="background:${col}" onclick="leggiRisposta('${id}', ${si}, ${di})">
+            🔊 Ascolta la risposta
+          </button>
+          <button class="btn-voce btn-stop" onclick="fermaVoce()">
+            ⏹ Stop
+          </button>
+        </div>
+        <div class="battuta-esperto">${d.b}</div>
+      `;
+
+      wrapper.appendChild(btn);
+      wrapper.appendChild(risp);
+      container.appendChild(wrapper);
+    });
+  });
+}
+
+function toggleDomanda(id, si, di) {
+  const btn = document.getElementById('btn-' + id);
+  const risp = document.getElementById('risp-' + id);
+  const col = SEZIONI[si].colore;
+  const isAperta = risp.classList.contains('aperta');
+
+  if (domandaAperta && domandaAperta !== id) {
+    const vecchioBtn = document.getElementById('btn-' + domandaAperta);
+    const vecchioRisp = document.getElementById('risp-' + domandaAperta);
+    if (vecchioBtn) {
+      vecchioBtn.classList.remove('aperta');
+      vecchioBtn.style.background = 'white';
+      vecchioBtn.style.color = 'var(--testo)';
+      vecchioBtn.style.borderColor = '#E7E5E4';
+    }
+    if (vecchioRisp) vecchioRisp.classList.remove('aperta');
+  }
+
+  fermaVoce();
+
+  if (isAperta) {
+    btn.classList.remove('aperta');
+    btn.style.background = 'white';
+    btn.style.color = 'var(--testo)';
+    btn.style.borderColor = '#E7E5E4';
+    risp.classList.remove('aperta');
+    domandaAperta = null;
+  } else {
+    btn.classList.add('aperta');
+    btn.style.background = col;
+    btn.style.borderColor = col;
+    risp.classList.add('aperta');
+    risp.style.borderColor = col + '44';
+    domandaAperta = id;
+    leggiDomanda(si, di);
+  }
+}
+
+// ===== SISTEMA AUDIO MP3 =====
+// I file MP3 devono trovarsi nella stessa cartella dell'HTML
+// Nomi file: dom_0_0.mp3, dom_0_1.mp3, ... dom_6_1.mp3
+// Fallback automatico alla Web Speech API se i file non sono presenti
+
+let audioCorrente = null;
+let usaMP3 = true; // imposta false per usare solo Web Speech
+
+function leggiDomanda(si, di) {
+  // Alla apertura della domanda legge solo la domanda (breve, con Web Speech)
+  // per non sovraccaricare — l'MP3 completo è nel pulsante "Ascolta la risposta"
+  fermaVoce();
+  if (window.speechSynthesis) {
+    const d = DATI[si][di];
+    const utt = new SpeechSynthesisUtterance(d.q);
+    utt.lang = 'it-IT';
+    utt.rate = 0.90;
+    utt.pitch = 1.05;
+    utt.volume = 1;
+    impostaVoce(utt);
+    window.speechSynthesis.speak(utt);
+  }
+}
+
+function leggiRisposta(id, si, di) {
+  fermaVoce();
+  const nomeFile = 'dom_' + si + '_' + di + '.mp3';
+  
+  if (usaMP3) {
+    audioCorrente = new Audio(nomeFile);
+    audioCorrente.volume = 1.0;
+    
+    // Mostra stato caricamento
+    const btnVoce = document.querySelector('#risp-' + id + ' .btn-voce');
+    if (btnVoce) {
+      const testoOriginale = btnVoce.innerHTML;
+      btnVoce.innerHTML = '⏳ Caricamento...';
+      audioCorrente.oncanplaythrough = () => {
+        btnVoce.innerHTML = '🔊 In riproduzione...';
+      };
+      audioCorrente.onended = () => {
+        btnVoce.innerHTML = testoOriginale;
+        audioCorrente = null;
+      };
+      audioCorrente.onerror = () => {
+        // Fallback a Web Speech se il file MP3 non esiste
+        btnVoce.innerHTML = testoOriginale;
+        audioCorrente = null;
+        leggiRispostaFallback(id, si, di);
+      };
+    }
+    
+    audioCorrente.play().catch(() => {
+      audioCorrente = null;
+      leggiRispostaFallback(id, si, di);
+    });
+  } else {
+    leggiRispostaFallback(id, si, di);
+  }
+}
+
+function leggiRispostaFallback(id, si, di) {
+  // Web Speech come riserva
+  if (!window.speechSynthesis) return;
+  const d = DATI[si][di];
+  const testo = d.r + ' ... ' + d.b.replace(/^[^:]+: «/, '').replace(/»$/, '');
+  const utt = new SpeechSynthesisUtterance(testo);
+  utt.lang = 'it-IT';
+  utt.rate = 0.88;
+  utt.pitch = 1.0;
+  utt.volume = 1;
+  impostaVoce(utt);
+  window.speechSynthesis.speak(utt);
+}
+
+function fermaVoce() {
+  if (audioCorrente) {
+    audioCorrente.pause();
+    audioCorrente.currentTime = 0;
+    audioCorrente = null;
+  }
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  // Reset tutti i pulsanti
+  document.querySelectorAll('.btn-voce:not(.btn-stop)').forEach(btn => {
+    if (btn.innerHTML.includes('riproduzione') || btn.innerHTML.includes('Caricamento')) {
+      btn.innerHTML = '🔊 Ascolta la risposta';
+    }
+  });
+}
+
+function impostaVoce(utt) {
+  const voci = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+  const preferitiIT = voci.filter(v =>
+    v.lang.startsWith('it') &&
+    (v.name.toLowerCase().includes('alice') ||
+     v.name.toLowerCase().includes('federica') ||
+     v.name.toLowerCase().includes('luca') ||
+     v.name.toLowerCase().includes('google') ||
+     v.name.toLowerCase().includes('italian'))
+  );
+  if (preferitiIT.length > 0) {
+    utt.voice = preferitiIT[0];
+  } else {
+    const qualsiasi = voci.find(v => v.lang.startsWith('it'));
+    if (qualsiasi) utt.voice = qualsiasi;
+  }
+}
+
+if (window.speechSynthesis) {
+  window.speechSynthesis.onvoiceschanged = () => {};
+}
+
+function apriModalMaestra() {
+  document.getElementById('modalMaestra').classList.add('aperta');
+}
+function chiudiModalMaestra() {
+  document.getElementById('modalMaestra').classList.remove('aperta');
+}
+function leggiMaestra() {
+  fermaVoce();
+  // Prova prima il file MP3 dedicato
+  const audioMaestra = new Audio('maestra_dossier.mp3');
+  audioMaestra.onerror = () => {
+    // Fallback Web Speech
+    if (!window.speechSynthesis) return;
+    const testo = "Dossier segreto sulla Maestra Cristina. Età: nasce quando esistono ancora i dinosauri. Aspetto: brutta, vecchia e cattiva... secondo lei. In realtà è la più bella della scuola, ma non glielo diciamo. Specialità: lezioni di matematica e geometria di durata geologica. Ha fatto sfarfallare bruchi, germogliare semi di mela, capire le frazioni con i biscotti alla Nutella, geniale! E progettare il Pong in aula informatica. Alcune risposte del giornalino avrebbe dovuto saperle già. Era troppo occupata a insegnarvi la matematica.";
+    const utt = new SpeechSynthesisUtterance(testo);
+    utt.lang = 'it-IT';
+    utt.rate = 0.9;
+    utt.pitch = 0.9;
+    impostaVoce(utt);
+    window.speechSynthesis.speak(utt);
+  };
+  audioMaestra.play().catch(() => audioMaestra.onerror());
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderDomande();
+  const btns = document.querySelectorAll('.sez-btn');
+  btns[0].style.background = SEZIONI[0].colore;
+  btns[0].style.color = 'white';
+  btns[0].style.borderColor = SEZIONI[0].colore;
+  if (window.speechSynthesis) {
+    window.speechSynthesis.getVoices();
+  }
+  // Test presenza MP3: se il primo file non esiste, usa Web Speech
+  const testAudio = new Audio('dom_0_0.mp3');
+  testAudio.onerror = () => { usaMP3 = false; };
+  testAudio.oncanplaythrough = () => { usaMP3 = true; testAudio.src = ''; };
+});
+</script>
+</body>
+</html>
